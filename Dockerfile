@@ -15,7 +15,7 @@ COPY package.json bun.lock /temp/prod/
 RUN cd /temp/prod && bun install --frozen-lockfile --production
 
 FROM base AS prerelease
-COPY --from=install /temp/dev/node_modules node_modules
+COPY --from=install /temp/prod/node_modules node_modules
 COPY . .
 
 FROM base AS release
@@ -24,4 +24,4 @@ COPY --from=prerelease /usr/src/app/src .
 COPY --from=prerelease /usr/src/app/package.json .
 
 USER bun
-ENTRYPOINT ["doppler", "run", "--",  "bun", "run", "start" ]
+ENTRYPOINT ["bun", "run", "start" ]
