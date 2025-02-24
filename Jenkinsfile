@@ -43,12 +43,15 @@ pipeline {
             steps {
                 script {
                     sh "docker rm -f ${env.CONTAINER_NAME} || true"
-                    sh """
-                        docker create \
-                            --name ${env.CONTAINER_NAME} \
-                            --restart always \
-                            ${env.IMAGE_URL}
-                    """
+                    withCredentials([string(credentialsId: 'vtuber-seonju-seonju-bot', variable: 'DOPPLER_TOKEN')]) {
+                        sh """
+                            docker create \
+                                --name ${env.CONTAINER_NAME} \
+                                -e DOPPLER_TOKEN=${DOPPLER_TOKEN} \
+                                --restart always \
+                                ${env.IMAGE_URL}
+                        """
+                    }
                     sh "docker start ${env.CONTAINER_NAME}"
                 }
             }
