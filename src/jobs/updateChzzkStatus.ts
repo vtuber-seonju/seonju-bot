@@ -10,7 +10,7 @@ import {
 import { getCategory, getTextChannel, getVoiceChannel } from "../utils/functions";
 
 export const updateChzzkStatus = async (client: Client<true>) => {
-  // 🔴 🟢
+  console.log("cronjob start - updateChzzkStatus");
   const chzzkCategory = await getCategory(client, DISCORD_CHZZK_CATEGORY);
   const chzzkLiveChannel = await getTextChannel(client, DISCORD_CHZZK_LIVE_CHANNEL);
   const chzzkFollowerChannel = await getVoiceChannel(client, DISCORD_CHZZK_FOLLOWER_CHANNEL);
@@ -69,7 +69,7 @@ export const updateChzzkStatus = async (client: Client<true>) => {
       chzzkLiveChannel.setName(`${onlineIcon}ㅣ${chzzkLive.content.concurrentUserCount}명-시청중`);
       chzzkFollowerChannel.setName(`${onlineIcon}ㅣ팔로워-${chzzkChannel.content.followerCount}명`);
 
-      if (previousStatus) {
+      if (!previousStatus) {
         const liveUrl = `https://chzzk.naver.com/live/${CHZZK_ID}`;
         const metaResponse = await fetch(liveUrl, {
           headers: {
@@ -99,4 +99,5 @@ export const updateChzzkStatus = async (client: Client<true>) => {
       chzzkFollowerChannel.setName(`${offlineIcon}ㅣ팔로워-${chzzkChannel.content.followerCount}명`);
     }
   }
+  console.log("cronjob end - updateChzzkStatus");
 };
