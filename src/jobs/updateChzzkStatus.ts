@@ -6,8 +6,8 @@ import {
   DISCORD_CHZZK_CATEGORY,
   DISCORD_CHZZK_FOLLOWER_CHANNEL,
   DISCORD_CHZZK_LIVE_CHANNEL,
-} from "../utils/env";
-import { getCategory, getTextChannel, getVoiceChannel } from "../utils/functions";
+} from "~/utils/env";
+import { getCategory, getTextChannel, getVoiceChannel } from "~/utils/functions";
 
 export const updateChzzkStatus = async (client: Client<true>) => {
   console.log("cronjob start - updateChzzkStatus");

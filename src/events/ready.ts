@@ -1,7 +1,7 @@
 import { ActivityType, type Client } from "discord.js";
-import { loadJobs } from "../jobs";
-import { DISCORD_LOG_SYSTEM } from "../utils/env";
-import { getTextChannel } from "../utils/functions";
+import { loadJobs } from "~/jobs";
+import { DISCORD_LOG_SYSTEM } from "~/utils/env";
+import { getTextChannel } from "~/utils/functions";
 
 export const ready = async (client: Client<true>) => {
   client.user.setPresence({
