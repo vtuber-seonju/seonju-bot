@@ -20,8 +20,10 @@ COPY . .
 
 FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /usr/src/app/src .
+COPY --from=prerelease /usr/src/app/src src
 COPY --from=prerelease /usr/src/app/package.json .
 
 USER bun
-ENTRYPOINT ["bun", "run", "start" ]
+ENTRYPOINT [ "bun", "run", "start" ]
+
+LABEL org.opencontainers.image.source=https://github.com/vtuber-seonju/seonju-bot
