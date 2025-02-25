@@ -1,5 +1,7 @@
 import * as v from "valibot";
 
+export const ENVIRONMENT = v.parse(v.string(), process.env.ENVIRONMENT) === "production" ? "production" : "development";
+
 export const DISCORD_TOKEN = v.parse(v.string(), process.env.DISCORD_TOKEN);
 
 export const CHZZK_ID = v.parse(v.string(), process.env.CHZZK_ID);

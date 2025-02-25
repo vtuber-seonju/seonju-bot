@@ -20,7 +20,7 @@ const isCategory = (channel: Channel | null): channel is CategoryChannel => {
   return channel?.type === ChannelType.GuildCategory;
 };
 
-export const getTextChannel = async (client: Client<true>, id: string): Promise<TextChannel | null> => {
+export const getTextChannel = async (client: Client, id: string): Promise<TextChannel | null> => {
   try {
     const channel = await client.channels.fetch(id);
     return isTextChannel(channel) ? channel : null;
@@ -29,7 +29,7 @@ export const getTextChannel = async (client: Client<true>, id: string): Promise<
   }
 };
 
-export const getVoiceChannel = async (client: Client<true>, id: string): Promise<VoiceChannel | null> => {
+export const getVoiceChannel = async (client: Client, id: string): Promise<VoiceChannel | null> => {
   try {
     const channel = await client.channels.fetch(id);
     return isVoiceChannel(channel) ? channel : null;

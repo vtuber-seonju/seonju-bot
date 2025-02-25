@@ -1,6 +1,14 @@
-import { type Client, Events } from "discord.js";
-import { ready } from "./ready";
+import type { Client } from "discord.js";
+import { clientReady } from "./clientReady";
+import { messageDelete } from "./messageDelete";
+import { messageUpdate } from "./messageUpdate";
+import { voiceStateUpdate } from "./voiceStateUpdate";
 
 export const loadEvents = (client: Client) => {
-  client.once(Events.ClientReady, ready);
+  clientReady(client);
+
+  messageDelete(client);
+  messageUpdate(client);
+
+  voiceStateUpdate(client);
 };
