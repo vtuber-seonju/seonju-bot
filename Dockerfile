@@ -22,6 +22,7 @@ FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/src src
 COPY --from=prerelease /usr/src/app/package.json .
+COPY /usr/src/app/tsconfig.json .
 
 USER bun
 ENTRYPOINT [ "bun", "run", "start" ]
