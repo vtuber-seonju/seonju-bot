@@ -40,7 +40,11 @@ export const voiceStateUpdate = (client: Client) => {
           .setTitle(oldVoiceChannel.toString())
           .setDescription(oldMembers.join("\n") || null);
         channel.send({ embeds: [headerEmbed, oldMemberEmbed] });
-      } else if (oldVoiceChannel !== null && voiceChannel !== null) {
+      } else if (
+        oldVoiceChannel !== null &&
+        voiceChannel !== null &&
+        oldVoiceChannel.toString() !== voiceChannel.toString()
+      ) {
         const headerEmbed = new EmbedBuilder()
           .setColor(Colors.Yellow)
           .setAuthor({
